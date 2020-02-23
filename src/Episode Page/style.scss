@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #eee;
+}
+
+.page-container {
+  .header {
+    margin: 40px auto 20px auto;
+    text-align: center;
+
+    h1,
+    h3 {
+      text-transform: uppercase;
+    }
+  }
+
+  .episode-list {
+    width: 80%;
+    min-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
+
+    .episode {
+      .image {
+        padding-top: 56.25%;
+      }
+    }
+  }
+}
