@@ -36,7 +36,7 @@ export default function EpisodeItem({ episode }: EpisodeItemIF) {
       />
       <CardMedia className="image" image={episode.image.original} />
       <CardContent>
-        <div dangerouslySetInnerHTML={{ __html: episode.summary }}></div>
+        <div dangerouslySetInnerHTML={{ __html: episode.summary }} />
       </CardContent>
     </Card>
   )

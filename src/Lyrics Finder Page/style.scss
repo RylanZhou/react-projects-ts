@@ -1,0 +1,154 @@
+$blue: #1976d2;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.app-bar {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+
+  .track-list,
+  .search-track {
+    width: 60%;
+    min-width: 800px;
+    margin: 10px 0;
+    padding: 20px;
+    border: 1px solid #ccc;
+    text-align: center;
+
+    h1 {
+      text-transform: uppercase;
+    }
+  }
+
+  .search-track {
+    .icon {
+      margin: 0 10px;
+    }
+
+    h3 {
+      margin: 10px 0;
+      color: #666;
+    }
+
+    .search-input {
+      width: 100%;
+      margin: 10px 0;
+    }
+
+    .search-button {
+      width: 100%;
+    }
+  }
+
+  .track-list {
+    .loading {
+      color: $blue;
+      font-size: 36px;
+      animation: spin 1s linear infinite;
+    }
+
+    .list-container {
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 20px;
+
+      .track-item {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+
+        a {
+          width: 100%;
+          text-decoration: none;
+
+          .view-button {
+            width: 100%;
+          }
+        }
+
+        .card-header {
+          flex-grow: 1;
+
+          .icon {
+            vertical-align: middle;
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  .lyrics-page {
+    width: 50%;
+    min-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+
+    .loading {
+      color: $blue;
+      font-size: 36px;
+      animation: spin 1s linear infinite;
+    }
+
+    .lyrics {
+      text-align: left;
+      width: 50%;
+      min-width: 600px;
+
+      .icon {
+        vertical-align: middle;
+        margin-right: 10px;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      .expand-button {
+        margin-left: auto;
+      }
+
+      p {
+        text-align: center;
+      }
+    }
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes rotate-reverse {
+  from {
+    transform: rotate(180deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

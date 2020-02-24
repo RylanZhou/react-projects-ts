@@ -24,7 +24,8 @@ module.exports = {
     __dirname: true,
     require: true,
     console: true,
-    Promise: true
+    Promise: true,
+    process: true
   },
   rules: {
     '@typescript-eslint/member-delimiter-style': 'off',
@@ -34,6 +35,7 @@ module.exports = {
     'react/jsx-max-props-per-line': [2, { when: 'multiline' }],
     'react/jsx-pascal-case': ['error'],
     'react/jsx-closing-tag-location': 2,
+    'react/self-closing-comp': 'error',
     'accessor-pairs': 2,
     'arrow-spacing': [
       2,
