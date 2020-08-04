@@ -70,7 +70,7 @@ export default (): ReactElement => {
                   <span>{firstName.substring(1)}</span>
                 </div>
                 <div className="last-name">{lastName}</div>
-                <div>{each.meal}</div>
+                <div className="meal">{each.meal}</div>
               </div>
               <div className="index-and-floor">
                 <div className="no">#</div>
