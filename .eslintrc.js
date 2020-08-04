@@ -25,7 +25,9 @@ module.exports = {
     require: true,
     console: true,
     Promise: true,
-    process: true
+    process: true,
+    FileReader: true,
+    alert: true
   },
   rules: {
     '@typescript-eslint/member-delimiter-style': 'off',
@@ -36,6 +38,7 @@ module.exports = {
     'react/jsx-pascal-case': ['error'],
     'react/jsx-closing-tag-location': 2,
     'react/self-closing-comp': 'error',
+    'react/display-name': 0,
     'accessor-pairs': 2,
     'arrow-spacing': [
       2,
