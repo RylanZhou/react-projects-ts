@@ -4,7 +4,14 @@ import { Button } from '@material-ui/core'
 
 import './styles.scss'
 
-const MOCK_DATA: DinnerDataType[] = []
+const MOCK_DATA: DinnerDataType[] = [
+  {
+    name: 'Jinlong Wang',
+    floor: '23F',
+    meal: 'xxxxxx',
+    index: 123
+  }
+]
 
 const COLORS = ['#9b59b6', '#3498db', '#2ecc71', '#1abc9c', '#e74c3c']
 const FLOOR_COLORS: { [key: string]: string } = {
@@ -66,6 +73,7 @@ export default (): ReactElement => {
                 <div>{each.meal}</div>
               </div>
               <div className="index-and-floor">
+                <div className="no">#</div>
                 <div className="index">
                   {`${('0'.repeat(3) + each.index).slice(-3)}`}
                 </div>
