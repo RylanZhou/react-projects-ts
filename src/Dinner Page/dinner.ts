@@ -20,7 +20,7 @@ const NAMES = [
 export const getDinnerData = (target: any): DinnerDataType[] => {
   try {
     const workbook = xlsx.read(target, { type: 'binary' })
-    const FLOORS = ['23F', '26F', '32F']
+    const FLOORS = ['23F', '26F', '32F', '37F ']
 
     const result: DinnerDataType[] = []
 
@@ -29,7 +29,6 @@ export const getDinnerData = (target: any): DinnerDataType[] => {
       const data: any[] = xlsx.utils.sheet_to_json(sheet)
 
       let currentMeal = ''
-
       for (const row of data) {
         if ('加班餐套餐' in row) {
           currentMeal = row['加班餐套餐']

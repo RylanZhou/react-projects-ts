@@ -7,7 +7,7 @@ import './styles.scss'
 const MOCK_DATA: DinnerDataType[] = [
   {
     name: 'Jinlong Wang',
-    floor: '23F',
+    floor: '37F',
     meal: 'xxxxxx',
     index: 123
   }
@@ -17,7 +17,8 @@ const COLORS = ['#9b59b6', '#3498db', '#2ecc71', '#1abc9c', '#e74c3c']
 const FLOOR_COLORS: { [key: string]: string } = {
   '23F': '#ee4f2e',
   '26F': '#7f8c8d',
-  '32F': '#34495e'
+  '32F': '#34495e',
+  '37F ': '#2c3e50'
 }
 
 export default (): ReactElement => {
@@ -60,7 +61,7 @@ export default (): ReactElement => {
         {dinnerData.map((each, index) => {
           const [lastName, firstName] = each.name.split(' ')
           return (
-            <div key={each.index} className="item">
+            <div key={each.floor + each.index} className="item">
               <div
                 className="name-and-meal"
                 style={{ backgroundColor: COLORS[index % COLORS.length] }}
