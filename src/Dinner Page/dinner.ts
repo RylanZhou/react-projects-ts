@@ -1,20 +1,27 @@
 import xlsx from 'xlsx'
 
-export interface DinnerDataType {
+export type DinnerDataType = {
   name: string
   meal: string
   index: number
   floor: string
 }
 
-const NAMES = [
+export type Meal = { name: string; image_url: string }
+
+export const NAMES = [
   'Jinlong Wang',
   'Shuangqing Chen',
   'Yunan Zhou',
   'Zibo Zhang',
   'Yin Jun',
   'Tao Mu',
-  'Danlei Qiang'
+  'Danlei Qiang',
+  'Zijun Yuan',
+  'Zhouhua Tang',
+  'Tieshan Zhang',
+  'Liqi Shi',
+  'Ximing Peng'
 ]
 
 export const getDinnerData = (target: any): DinnerDataType[] => {

@@ -12,11 +12,15 @@
   display: none;
 }
 
+.button-group {
+  margin-left: 20px;
+}
+
 .item {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 500px;
+  width: 600px;
   height: 100px;
   margin: 20px;
 
@@ -25,18 +29,34 @@
     flex: 1;
     padding: 5px 10px 0 0;
     border-radius: 8px;
-    border-right: 1px dashed white;
+    border-right: 2px dashed white;
     text-align: right;
     color: #fff;
     overflow: hidden;
+    background-position: center;
+    background-size: cover;
+
+    .cover {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      background-image: linear-gradient(
+        to left,
+        rgba(0, 0, 0, 0.8),
+        rgba(0, 0, 0, 0)
+      );
+    }
 
     .first-name {
       position: absolute;
-      z-index: 0;
+      z-index: 1;
       top: -10px;
       left: 0;
       color: white;
-      opacity: 0.4;
+      opacity: 0.6;
       text-transform: uppercase;
       font-size: 50px;
       font-weight: bold;
@@ -47,6 +67,7 @@
     }
 
     .last-name {
+      position: relative;
       z-index: 10;
       text-transform: uppercase;
       font-size: 20px;
@@ -54,6 +75,7 @@
     }
 
     .meal {
+      position: relative;
       z-index: 10;
       margin-left: auto;
       width: 70%;
