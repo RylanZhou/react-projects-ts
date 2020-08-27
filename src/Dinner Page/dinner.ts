@@ -24,7 +24,10 @@ export const NAMES = [
   'Ximing Peng'
 ]
 
-export const getDinnerData = (target: any): DinnerDataType[] => {
+export const getDinnerData = (
+  target: any,
+  names: string[] = NAMES
+): DinnerDataType[] => {
   try {
     const workbook = xlsx.read(target, { type: 'binary' })
     const FLOORS = ['23F', '26F', '32F', '37F ']
@@ -40,7 +43,7 @@ export const getDinnerData = (target: any): DinnerDataType[] => {
         if ('加班餐套餐' in row) {
           currentMeal = row['加班餐套餐']
         }
-        if (row['姓名'] && NAMES.includes(row['姓名'])) {
+        if (row['姓名'] && names.includes(row['姓名'])) {
           result.push({
             name: row['姓名'],
             meal: currentMeal,

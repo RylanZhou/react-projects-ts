@@ -1,18 +1,18 @@
 import React, { ReactElement, useState, useEffect } from 'react'
-import { Button, ButtonGroup } from '@material-ui/core'
+import { Button, ButtonGroup, TextField } from '@material-ui/core'
 import axios from 'axios'
 import { getDinnerData, DinnerDataType, Meal, NAMES } from './dinner'
 
 import './styles.scss'
 
-// const MOCK_DATA: DinnerDataType[] = [
-//   {
-//     name: 'Jinlong Wang',
-//     floor: '37F ',
-//     meal: 'xxxxxx',
-//     index: 123
-//   }
-// ]
+const MOCK_DATA: DinnerDataType[] = [
+  {
+    name: 'Jinlong Wang',
+    floor: '37F ',
+    meal: 'xxxxxx',
+    index: 123
+  }
+]
 
 const COLORS = ['#9b59b6', '#3498db', '#2ecc71', '#1abc9c', '#e74c3c']
 const FLOOR_COLORS: { [key: string]: string } = {
@@ -25,13 +25,15 @@ const FLOOR_COLORS: { [key: string]: string } = {
 const DinnerService = axios.create({ baseURL: 'http://localhost:5000/' })
 
 export default (): ReactElement => {
-  const [dinnerData, setDinnerData] = useState<DinnerDataType[]>([])
+  const [dinnerData, setDinnerData] = useState<DinnerDataType[]>(MOCK_DATA)
   const [mealsData, setMealsData] = useState<Array<Meal>>([])
+  const [excelData, setExcelData] = useState<any>()
+  const [inputNames, setInputNames] = useState<string>()
   const [filter, setFilter] = useState<'FE' | 'QA' | 'ALL'>('ALL')
 
   const filterMap = {
-    QA: ['Yunan Zhou', ...NAMES.slice(0, 7)],
-    FE: ['Yunan Zhou', ...NAMES.slice(7)],
+    QA: ['Yunan Zhou', ...NAMES.slice(0, 8)],
+    FE: ['Yunan Zhou', ...NAMES.slice(8)],
     ALL: ['Yunan Zhou', ...NAMES]
   }
 
@@ -51,7 +53,8 @@ export default (): ReactElement => {
       event.preventDefault()
       try {
         const result = event.target?.result
-        setDinnerData(getDinnerData(result))
+        setExcelData(result)
+        setDinnerData(getDinnerData(result, filterMap[filter]))
       } catch (error) {
         console.log(error)
         alert('Problematic Imports!')
@@ -62,10 +65,21 @@ export default (): ReactElement => {
 
   const changeFilter = (filter: 'QA' | 'FE' | 'ALL') => {
     setFilter(filter)
+    setInputNames(filterMap[filter].join('\n'))
+    excelData && setDinnerData(getDinnerData(excelData, filterMap[filter]))
+  }
+
+  const handleTextChange = (text: string) => {
+    setInputNames(text)
+    // Number of lines changed
+    if (text.split('\n').length !== inputNames?.split('\n').length) {
+      setDinnerData(getDinnerData(excelData, inputNames?.split('\n')))
+    }
   }
 
   useEffect(() => {
     getMealsData()
+    setInputNames(filterMap[filter].join('\n'))
   }, [])
 
   return (
@@ -105,47 +119,59 @@ export default (): ReactElement => {
         </ButtonGroup>
       </section>
 
-      <section>
-        {dinnerData.map((each, index) => {
-          if (!filterMap[filter].includes(each.name)) {
-            return null
-          }
-          const [lastName, firstName] = each.name.split(' ')
-          console.log(mealsData.find((item) => item.name === each.meal))
-          const imageUrl = mealsData.find((item) => item.name === each.meal)
-            ?.image_url
-          return (
-            <div key={each.floor + each.index} className="item">
-              <div
-                className="name-and-meal"
-                style={{
-                  backgroundImage: `url("http://dinner.szoa.shopee.com${imageUrl}")`,
-                  backgroundColor: COLORS[index % COLORS.length]
-                }}
-              >
-                <div className="cover" />
-                <div className="first-name">
-                  <span className="first-letter">{firstName[0]}</span>
-                  <span>{firstName.substring(1)}</span>
-                </div>
-                <div className="last-name">{lastName}</div>
-                <div className="meal">{each.meal}</div>
-              </div>
-              <div className="index-and-floor">
-                <div className="no">#</div>
-                <div className="index">
-                  {`${('0'.repeat(3) + each.index).slice(-3)}`}
-                </div>
+      <section className="main">
+        <div className="name-input">
+          <TextField
+            variant="outlined"
+            multiline
+            label="Names"
+            placeholder="Input names here"
+            value={inputNames}
+            onChange={(e) => handleTextChange(e.target.value)}
+          />
+        </div>
+        <div className="result">
+          {dinnerData.map((each, index) => {
+            if (!filterMap[filter].includes(each.name)) {
+              return null
+            }
+            const [lastName, firstName] = each.name.split(' ')
+            console.log(mealsData.find((item) => item.name === each.meal))
+            const imageUrl = mealsData.find((item) => item.name === each.meal)
+              ?.image_url
+            return (
+              <div key={each.floor + each.index} className="item">
                 <div
-                  className="floor"
-                  style={{ backgroundColor: FLOOR_COLORS[each.floor] }}
+                  className="name-and-meal"
+                  style={{
+                    backgroundImage: `url("http://dinner.szoa.shopee.com${imageUrl}")`,
+                    backgroundColor: COLORS[index % COLORS.length]
+                  }}
                 >
-                  {each.floor}
+                  <div className="cover" />
+                  <div className="first-name">
+                    <span className="first-letter">{firstName[0]}</span>
+                    <span>{firstName.substring(1)}</span>
+                  </div>
+                  <div className="last-name">{lastName}</div>
+                  <div className="meal">{each.meal}</div>
+                </div>
+                <div className="index-and-floor">
+                  <div className="no">#</div>
+                  <div className="index">
+                    {`${('0'.repeat(3) + each.index).slice(-3)}`}
+                  </div>
+                  <div
+                    className="floor"
+                    style={{ backgroundColor: FLOOR_COLORS[each.floor] }}
+                  >
+                    {each.floor}
+                  </div>
                 </div>
               </div>
-            </div>
-          )
-        })}
+            )
+          })}
+        </div>
       </section>
     </div>
   )

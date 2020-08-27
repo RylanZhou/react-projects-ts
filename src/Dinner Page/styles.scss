@@ -16,109 +16,121 @@
   margin-left: 20px;
 }
 
-.item {
+.main {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 600px;
-  height: 100px;
-  margin: 20px;
 
-  .name-and-meal {
-    position: relative;
-    flex: 1;
-    padding: 5px 10px 0 0;
-    border-radius: 8px;
-    border-right: 2px dashed white;
-    text-align: right;
-    color: #fff;
-    overflow: hidden;
-    background-position: center;
-    background-size: cover;
-
-    .cover {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      background-image: linear-gradient(
-        to left,
-        rgba(0, 0, 0, 0.8),
-        rgba(0, 0, 0, 0)
-      );
-    }
-
-    .first-name {
-      position: absolute;
-      z-index: 1;
-      top: -10px;
-      left: 0;
-      color: white;
-      opacity: 0.6;
-      text-transform: uppercase;
-      font-size: 50px;
-      font-weight: bold;
-
-      .first-letter {
-        font-size: 100px;
-      }
-    }
-
-    .last-name {
-      position: relative;
-      z-index: 10;
-      text-transform: uppercase;
-      font-size: 20px;
-      font-weight: bold;
-    }
-
-    .meal {
-      position: relative;
-      z-index: 10;
-      margin-left: auto;
-      width: 70%;
-    }
+  .name-input {
+    margin: 20px;
   }
 
-  .index-and-floor {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 200px;
-    border-radius: 8px;
-    background-color: #f8d40b;
-    overflow: hidden;
+  .result {
+    min-width: 640px;
 
-    .no {
-      position: absolute;
-      top: 16px;
-      left: 16px;
-      font-size: 20px;
-      color: white;
-      font-family: 'Comic Sans MS';
-    }
+    .item {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 600px;
+      height: 100px;
+      margin: 20px;
 
-    .index {
-      flex: 1;
-      text-align: center;
-      font-size: 40px;
-      color: white;
-      font-family: 'Comic Sans MS';
-    }
+      .name-and-meal {
+        position: relative;
+        flex: 1;
+        padding: 5px 10px 0 0;
+        border-radius: 8px;
+        border-right: 2px dashed white;
+        text-align: right;
+        color: #fff;
+        overflow: hidden;
+        background-position: center;
+        background-size: cover;
 
-    .floor {
-      height: 100%;
-      padding: 0 10px;
-      align-self: baseline;
-      text-align: center;
-      writing-mode: vertical-lr;
-      font-size: 32px;
-      color: white;
-      background-color: #ee4f2e;
-      font-family: 'Comic Sans MS';
+        .cover {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 0;
+          background-image: linear-gradient(
+            to left,
+            rgba(0, 0, 0, 0.8),
+            rgba(0, 0, 0, 0)
+          );
+        }
+
+        .first-name {
+          position: absolute;
+          z-index: 1;
+          top: -10px;
+          left: 0;
+          color: white;
+          opacity: 0.6;
+          text-transform: uppercase;
+          font-size: 50px;
+          font-weight: bold;
+
+          .first-letter {
+            font-size: 100px;
+          }
+        }
+
+        .last-name {
+          position: relative;
+          z-index: 10;
+          text-transform: uppercase;
+          font-size: 20px;
+          font-weight: bold;
+        }
+
+        .meal {
+          position: relative;
+          z-index: 10;
+          margin-left: auto;
+          width: 70%;
+        }
+      }
+
+      .index-and-floor {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 200px;
+        border-radius: 8px;
+        background-color: #f8d40b;
+        overflow: hidden;
+
+        .no {
+          position: absolute;
+          top: 16px;
+          left: 16px;
+          font-size: 20px;
+          color: white;
+          font-family: 'Comic Sans MS';
+        }
+
+        .index {
+          flex: 1;
+          text-align: center;
+          font-size: 40px;
+          color: white;
+          font-family: 'Comic Sans MS';
+        }
+
+        .floor {
+          height: 100%;
+          padding: 0 10px;
+          align-self: baseline;
+          text-align: center;
+          writing-mode: vertical-lr;
+          font-size: 32px;
+          color: white;
+          background-color: #ee4f2e;
+          font-family: 'Comic Sans MS';
+        }
+      }
     }
   }
 }
