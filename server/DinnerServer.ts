@@ -1,5 +1,4 @@
 import express from 'express'
-import path from 'path'
 import axios from 'axios'
 
 type Menu = {
@@ -47,17 +46,9 @@ const getMeals = async (menuId: number) => {
   return data.food
 }
 
-const app: express.Application = express()
+const route: express.Router = express.Router()
 
-app.use(express.json())
-app.use(express.static('../../../build'))
-app.use('/', (request, response, next) => {
-  const origin = request.headers['origin']
-  response.setHeader('Access-Control-Allow-Origin', origin || '*')
-  next()
-})
-
-app.get('/data', async (request, response) => {
+route.get('/data', async (request, response) => {
   try {
     const menuId = await getMenuId()
     const mealsData = await getMeals(menuId)
@@ -68,8 +59,4 @@ app.get('/data', async (request, response) => {
   }
 })
 
-app.get('*', (request, response) => {
-  response.sendFile(path.resolve(__dirname, 'client', 'index.html'))
-})
-
-app.listen(5000, () => console.log('Server is running on port 5000'))
+export default route

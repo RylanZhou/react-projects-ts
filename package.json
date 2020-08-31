@@ -8,6 +8,7 @@
     "@testing-library/react": "^10.4.7",
     "@testing-library/user-event": "^12.1.0",
     "axios": "^0.19.2",
+    "express": "^4.17.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-icons": "^3.10.0",
@@ -18,7 +19,6 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "publish": "rm -rf ../react-ts-be/client/* & cp -a build/* ../react-ts-be/client",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -38,6 +38,7 @@
     ]
   },
   "devDependencies": {
+    "@types/express": "^4.17.7",
     "@types/node": "^14.0.27",
     "@types/react": "^16.9.44",
     "@types/react-dom": "^16.9.8",
